@@ -16,20 +16,15 @@
 
 &caps_word { continue-list = <UNDERSCORE MINUS>; };
 
+&mt { tapping-term-ms = <250>; };
+
 / {
     combos {
     };
 };
 
 / {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 };
 
 / {
@@ -42,6 +37,179 @@
             #binding-cells = <2>;
             tapping-term-ms = <250>;
             flavor = "tap-preferred";
+        };
+
+        td_up: td_up {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_UP";
+            #binding-cells = <0>;
+            bindings = <&mt PG_UP UP_ARROW>, <&ag UP_ARROW>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_down: td_down {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_DOWN";
+            #binding-cells = <0>;
+            bindings = <&mt PG_DN DOWN>, <&ag DOWN>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_left: td_left {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LEFT";
+            #binding-cells = <0>;
+            bindings = <&mt LA(LEFT) LEFT>, <&ag LEFT>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_right: td_right {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_RIGHT";
+            #binding-cells = <0>;
+            bindings = <&mt LA(RIGHT) RIGHT>, <&ag RIGHT>;
+
+            tapping-term-ms = <250>;
+        };
+
+        hyper: hyper {
+            compatible = "zmk,behavior-tap-dance";
+            label = "HYPER";
+            #binding-cells = <0>;
+            bindings =
+                <&mt LS(LA(LG(LEFT_CONTROL))) ESCAPE>,
+                <&mt C_AL_LOCK C_POWER>,
+                <&mt LC(LG(ESC)) LC(C_POWER)>;
+
+            tapping-term-ms = <300>;
+        };
+
+        ht_sos: ht_sos {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_SOS";
+            bindings = <&kp>, <&sos>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+        };
+
+        mo_tog: mo_tog {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MO_TOG";
+            bindings = <&mo>, <&tog>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+        };
+
+        ht_slash: ht_slash {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_SLASH";
+            bindings = <&interrobang>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+        };
+
+        ht_emdash: ht_emdash {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_EMDASH";
+            bindings = <&kp>, <&doubledash>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+        };
+
+        ht_endash: ht_endash {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_ENDASH";
+            bindings = <&kp>, <&tripledash>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+        };
+
+        td_ques: td_ques {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_QUES";
+            #binding-cells = <0>;
+            bindings = <&ht_slash 0 SLASH>, <&kp QUESTION>, <&wth>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_quote: td_quote {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_QUOTE";
+            #binding-cells = <0>;
+            bindings = <&kp SQT>, <&kp DOUBLE_QUOTES>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_colon: td_colon {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_COLON";
+            #binding-cells = <0>;
+            bindings = <&kp SEMICOLON>, <&kp COLON>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_open: td_open {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_OPEN";
+            #binding-cells = <0>;
+            bindings = <&ag LEFT_BRACKET>, <&kp LEFT_BRACE>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_close: td_close {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_CLOSE";
+            #binding-cells = <0>;
+            bindings = <&ag RIGHT_BRACKET>, <&kp RIGHT_BRACE>;
+
+            tapping-term-ms = <250>;
+        };
+
+        td_dash: td_dash {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_DASH";
+            #binding-cells = <0>;
+            bindings =
+                <&mt UNDERSCORE MINUS>,
+                <&ht_emdash LS(LA(MINUS)) 0>,
+                <&ht_endash LA(MINUS) 0>;
+        };
+
+        td_3key: td_3key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_3KEY";
+            #binding-cells = <0>;
+            bindings = <&mt F3 HASH>, <&kp LA(LS(NUMBER_2))>;
+        };
+
+        td_4key: td_4key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_4KEY";
+            #binding-cells = <0>;
+            bindings = <&mt F4 LA(NUMBER_3)>, <&kp DOLLAR>;
+        };
+
+        td_5key: td_5key {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_5KEY";
+            #binding-cells = <0>;
+            bindings = <&mt F5 PERCENT>, <&kp LA(NUMBER_2)>;
         };
     };
 
@@ -71,6 +239,77 @@
                 <&macro_param_1to1 &macro_param_1to2 &ag_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
 
             label = "AG";
+        };
+
+        interrobang: interrobang {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp QUESTION &kp EXCLAMATION>,
+                <&macro_release>;
+
+            label = "INTERROBANG";
+        };
+
+        wth: wth {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp QUESTION &kp QUESTION &kp QUESTION>,
+                <&macro_release>;
+
+            label = "WTH";
+        };
+
+        sos: sos {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LA(LG(ESC))>, <&macro_release>;
+
+            label = "SOS";
+        };
+
+        powerup: powerup {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp LC(C_POWER)>, <&macro_release>;
+
+            label = "POWERUP";
+        };
+
+        doubledash: doubledash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp MINUS &kp MINUS>, <&macro_release>;
+
+            label = "DOUBLEDASH";
+        };
+
+        tripledash: tripledash {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&kp MINUS &kp MINUS &kp MINUS>,
+                <&macro_release>;
+
+            label = "TRIPLEDASH";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        capwordz {
+            bindings = <&caps_word>;
+            key-positions = <26 27>;
+        };
+
+        caplocks {
+            bindings = <&kp CAPSLOCK>;
+            key-positions = <26 36>;
         };
     };
 
